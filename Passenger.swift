@@ -7,24 +7,21 @@
 
 import Foundation
 
-class Passenger: Hashable {
-    func hash(into hasher: inout Hasher) {
-           hasher.combine(ObjectIdentifier(self))
-       }
-    static func == (lhs: Passenger, rhs: Passenger) -> Bool {
-        lhs.seatNumber == rhs.seatNumber
-    }
+struct Passenger: Equatable {
     
     let name: String
-    var seatNumber : Int
     let bookingTime : Date
-    var seatType: String
+    let type: passengerType
     
-    init(name: String, seatType: String, seatNumber: Int) {
+    init(name: String, type: passengerType) {
         self.name = name
-        self.seatType = seatType
-        self.seatNumber = seatNumber
+        self.type = type
         self.bookingTime = Date()
     }
+}
+
+enum passengerType {
+    case firstClass
+    case economic
 }
 
